@@ -1,1 +1,21 @@
-<h1>Hello</h1>
+<div class="input-group ml-4">
+  <select class="form-control" onchange="location = this.options[this.selectedIndex].value" id="sort" name="sort"
+    aria-label="Default select example">
+    <option value="#">{{#if sortOptions}} {{sortOptions}} {{else}} 類別 {{/if}}</option>
+    <option value="/search/home">家居物業</option>
+    <option value="/search/transportation ">交通出行</option>
+    <option value="/search/entertainment ">休閒娛樂</option>
+    <option value="/search/food">餐飲食品</option>
+  </select>
+</div>
+<div class="dropdown">
+  <input type="text" class="textBox" placeholder="Dropdown Menu" readonly>
+  <div class="option">
+    <div><ion-icon name="logo-html5"></ion-icon>Html</div>
+    <div><ion-icon name="logo-css3"></ion-icon>CSS</div>
+    <div><ion-icon name="logo-nodejs"></ion-icon></ion-icon>Javascript</div>
+    <div><ion-icon name="logo-figma"></ion-icon>Figma</div>
+    <div><ion-icon name="logo-react"></ion-icon>ReactJS</div>
+  </div>
+
+</div>
