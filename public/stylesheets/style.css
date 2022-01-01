@@ -6,7 +6,6 @@
   font-family: 'Poppins', sans-serif;
 }
 body {
-  display: flex;
   justify-content: center;
   min-height: 100vh;
   background: #fafafa;
@@ -14,8 +13,27 @@ body {
 .dropdown {
   position: relative;
   margin-top: 100px;
-  width: 300px;
+  width: 400px;
   height: 50px;
+}
+.dropdown::before {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 10000;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #333;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+.dropdown.active::before {
+  top: 22px;
+  transform: rotate(-225deg);
 }
 .dropdown input {
   position: absolute;
@@ -26,5 +44,75 @@ body {
   cursor: pointer;
   background: #fff;
   border: none;
+  outline: none;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+.dropdown .option {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: none;
+}
+.dropdown.active .option {
+  display: block;
+  z-index: 1;
+}
+.dropdown .option div {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.dropdown .option div:hover {
+  background: #292b2c;
+  color: #fff;
+}
+.dropdown .option div ion-icon {
+  position: relative;
+}
+.container {
+  width: 700px;
+  justify-content: space-between;
+}
+#total-amount {
+  font-size: 2cm;
+  color: rgb(228, 127, 33);
+}
+col {
+  align-self: center;
+}
+.fas {
+  margin-top: 10px;
+  font-size: 1cm;
+}
+.list-group-item {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  align-items: center;
+  border: none;
+}
+.amount-container {
+  display: flex;
+  width: 400px;
+  margin-top: 2em;
+  justify-content: space-between;
+}
+.content-box {
+  width: 400px;
+  padding: 1ch;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(241, 241, 241);
+}
+.function-box {
+  margin-left: 2em;
+}
+.button-box {
+  width: 400px;
+  margin-top: 3em;
+  text-align: center;
 }

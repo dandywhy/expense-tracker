@@ -1,21 +1,84 @@
-<div class="input-group ml-4">
-  <select class="form-control" onchange="location = this.options[this.selectedIndex].value" id="sort" name="sort"
-    aria-label="Default select example">
-    <option value="#">{{#if sortOptions}} {{sortOptions}} {{else}} 類別 {{/if}}</option>
-    <option value="/search/home">家居物業</option>
-    <option value="/search/transportation ">交通出行</option>
-    <option value="/search/entertainment ">休閒娛樂</option>
-    <option value="/search/food">餐飲食品</option>
-  </select>
-</div>
 <div class="dropdown">
-  <input type="text" class="textBox" placeholder="Dropdown Menu" readonly>
+  <input type="text" class="textBox" placeholder="類別" readonly>
   <div class="option">
-    <div><ion-icon name="logo-html5"></ion-icon>Html</div>
-    <div><ion-icon name="logo-css3"></ion-icon>CSS</div>
-    <div><ion-icon name="logo-nodejs"></ion-icon></ion-icon>Javascript</div>
-    <div><ion-icon name="logo-figma"></ion-icon>Figma</div>
-    <div><ion-icon name="logo-react"></ion-icon>ReactJS</div>
+    <div onclick="show('Html')"><ion-icon name="logo-html5"></ion-icon>家居物業</div>
+    <div onclick="show('CSS')"><ion-icon name="logo-css3"></ion-icon>交通出行</div>
+    <div onclick="show('Javascript')"><ion-icon name="logo-nodejs"></ion-icon></ion-icon>休閒娛樂</div>
+    <div onclick="show('Figma')"><ion-icon name="logo-figma"></ion-icon>餐飲食品</div>
+    <div onclick="show('ReactJS')"><ion-icon name="logo-react"></ion-icon>其他</div>
   </div>
-
 </div>
+<div class="amount-container">
+  <div>
+    <h4>總金額:</h4>  
+  </div>
+  <div>
+    <span id="total-amount">25260</span>
+  </div>
+</div>
+<ul class="list-group">  
+  <li class="list-group-item bg-light">
+      <div class="content-box d-flex ">
+        <div class="row">
+          <div class="col img-box">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="col">
+            <h4>午餐</h4>
+            <span>2019/04/23</span>
+          </div>
+        </div>
+        <div class="">
+          <h5>60</h5>
+        </div>
+      </div>
+      <div class="function-box bg-light">
+        <a href="" class="btn">修改</a>
+        <a href="" class="btn">刪除</a>
+      </div>
+  </li>
+  <li class="list-group-item bg-light">
+    <div class="content-box d-flex ">
+      <div class="row">
+        <div class="col img-box">
+          <i class="fas fa-home"></i>
+        </div>
+        <div class="col">
+          <h4>午餐</h4>
+          <span>2019/04/23</span>
+        </div>
+      </div>
+      <div class="">
+        <h5>60</h5>
+      </div>
+    </div>
+    <div class="function-box bg-light">
+      <a href="" class="btn">修改</a>
+      <a href="" class="btn">刪除</a>
+    </div>
+  </li>
+</ul>
+<div class="button-box">
+  <button class="btn btn-info">新增支出</button>
+</div>
+
+
+<script>
+  function show(anything) {
+    document.querySelector('.textBox').value = anything
+  }
+  
+  let dropdown = document.querySelector('.dropdown')
+  dropdown.onclick = () => dropdown.classList.toggle('active')
+</script>
+
+<script>
+  const CATEGORY = {
+      家居物業: "https://fontawesome.com/icons/home?style=solid",
+      交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
+      休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
+      餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
+      其他: "https://fontawesome.com/icons/pen?style=solid"
+    }
+  
+</script>
