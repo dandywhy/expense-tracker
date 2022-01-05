@@ -1,0 +1,35 @@
+<div class="container new-content">
+  <span class="text-danger">
+    <small><i class="fas fa-exclamation-circle mb-3"></i>全部欄位必填</small>
+  </span>
+  <h2>請輸入你的支出</h2>
+  <form action="/todos" method="POST">
+    <div class="input-group my-3">
+      <span class="input-group-text">名稱</span>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="input-group my-3">
+      <span class="input-group-text">日期</span>
+      <input type="date" name="date" class="form-control" required>
+    </div>
+    <div class="input-group my-3">
+      <span class="input-group-text">類別</span>
+      <select class="form-control" name="categoryId" id="categoryId" required>
+        <option>家居物業</option>
+        <option>交通出行</option>
+        <option>休閒娛樂</option>
+        <option>餐飲食品</option>
+        <option>其他</option>
+      </select>
+    </div>
+    <div class="input-group my-3">
+      <span class="input-group-text">金額</span>
+      <input type="number" name="expense" class="form-control" required>
+    </div>
+  </form>
+  <button class="btn btn-dark" type="submit">新增支出</button>
+  </div>
+</div>
+  
+  
+  
