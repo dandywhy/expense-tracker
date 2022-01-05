@@ -6,7 +6,7 @@ const preset = {
   require: true
 }
 
-const expenseTrackSchema = new Schema({
+const recordSchema = new Schema({
   name: preset,
   date: preset,
   category: preset,
@@ -19,4 +19,4 @@ const expenseTrackSchema = new Schema({
   }
 })
 
-moduele.exports = mongoose.model('ExpenseTrack', expenseTrackSchema)
+moduele.exports = mongoose.model('Record', recordSchema)
