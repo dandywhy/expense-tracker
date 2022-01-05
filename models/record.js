@@ -1,21 +1,31 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const preset = {
-  type: String,
-  require: true
-}
 
 const recordSchema = new Schema({
-  name: preset,
-  date: preset,
-  category: preset,
-  expense: preset,
+  name: {
+    type: String,
+    require: true
+  },
+  date: {
+    type: Date,
+    require: true
+  },
+  amount: {
+    type: Number,
+    require: true
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     index: true,
     required: true
+  },
+  categoryId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    index: true,
+    require: true
   }
 })
 
