@@ -5,10 +5,13 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
 const routes = require('./routes')
-const { route } = require('express/lib/application')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+require('./config/mongoose')
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
