@@ -28,11 +28,11 @@ const CATEGORY = [
 ]
 
 db.once('open', () => {
-  Promise.all(CATEGORY.map((seed) => {
+  Promise.all(CATEGORY.map(seed => {
     return Category.create(seed)
   }))
   .then(() => {
-    console.log('categorySeed done!')
+    console.log('categoryseed done!')
     process.exit()
   })
   .catch(err => console.log(err))

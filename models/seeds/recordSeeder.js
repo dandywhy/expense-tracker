@@ -1,40 +1,87 @@
+const bcrypt = require('bcryptjs')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 const db = require('../../config/mongoose')
 const User = require('../user')
 const Record = require('../record')
+const Category = require('../category')
 const SEED_USER = [
   {
-    name: 'Andy',
-    email: 'Andy@test.com',
-    password: '123'
+    name: '廣志',
+    email: 'user1@test.com',
+    password: '123',
+    list: [0, 1, 2, 4]
+  },
+  {
+    name: '小新',
+    email: 'user2@test.com',
+    password: '123',
+    list: [3]
   }
 ]
 const SEED_RECORD = [
   {
-    name: '早餐',
-    date: '2022-1-5',
-    amount: 50,
-    category: "餐飲食品"
+    id: 1,
+    name: '午餐',
+    date: '2019-4-23',
+    amount: 60,
+    category: '餐飲食品'
+  },
+  { 
+    id: 2,
+    name: '晚餐',
+    date: '2019-4-23',
+    amount: 60,
+    category: '餐飲食品'
   },
   {
-    name: '電影:月老',
-    date: '2021-12-30',
-    amount: 250,
-    category: "休閒娛樂"
+    id: 3,
+    name: '捷運',
+    date: '2019-4-23',
+    amount: 120,
+    category: '交通出行'
+  },
+  {
+    id: 4,
+    name: '電影:驚奇隊長',
+    date: '2019-4-23',
+    amount: 220,
+    category: '休閒娛樂'
+  },
+  {
+    id: 5,
+    name: '租金',
+    date: '2015-4-1',
+    amount: 25000,
+    category: '家居物業'
   }
 ]
 
-db.once('once', () => {
-  Promise.all(SEED_USER.map((seed_user) => {
-    return Promise.all(SEED_RECORD.map((seed_record) => {
-      
-    })
-  )}))
+db.once('open', () => {
+  Promise.all(SEED_USER.map(seed_user => {
+    const { name, email, password, list } = seed_user
+    return bcrypt
+      .genSalt(10)
+      .then(salt => { return bcrypt.hash(password, salt) })
+      .then(hash => { return User.create({ name, email, password: hash }) })
+      .then(user => {
+        const userId = user._id
+        return Promise.all(list.map(index => { 
+          const { category } = SEED_RECORD[index]
+          return Category.findOne({ name: category })
+           .then(category => {
+             const categoryId = category._id
+             Object.assign(SEED_RECORD[index], { userId, categoryId })
+             return Record.create(SEED_RECORD[index])
+           })
+        }))
+      })
+  }))
   .then(() => {
-    console.log('recordSeeder done!')
+    console.log('recordseeder done!')
     process.exit()
   })
   .catch(err => console.log(err))
 })
+
