@@ -24,35 +24,35 @@ const SEED_RECORD = [
   {
     id: 1,
     name: '午餐',
-    date: '2019-4-23',
+    date: '2019/4/23',
     amount: 60,
     category: '餐飲食品'
   },
   { 
     id: 2,
     name: '晚餐',
-    date: '2019-4-23',
+    date: '2019/4/23',
     amount: 60,
     category: '餐飲食品'
   },
   {
     id: 3,
     name: '捷運',
-    date: '2019-4-23',
+    date: '2019/4/23',
     amount: 120,
     category: '交通出行'
   },
   {
     id: 4,
     name: '電影:驚奇隊長',
-    date: '2019-4-23',
+    date: '2019/4/23',
     amount: 220,
     category: '休閒娛樂'
   },
   {
     id: 5,
     name: '租金',
-    date: '2015-4-1',
+    date: '2015/4/1',
     amount: 25000,
     category: '家居物業'
   }
@@ -68,11 +68,11 @@ db.once('open', () => {
       .then(user => {
         const userId = user._id
         return Promise.all(list.map(index => { 
-          const { category } = SEED_RECORD[index]
-          return Category.findOne({ name: category })
+          const categoryName =  SEED_RECORD[index].category 
+          return Category.findOne({ name: categoryName })
            .then(category => {
-             const categoryId = category._id
-             Object.assign(SEED_RECORD[index], { userId, categoryId })
+             const { _id, icon } = category
+             Object.assign(SEED_RECORD[index], { userId, categoryId: _id, icon })
              return Record.create(SEED_RECORD[index])
            })
         }))

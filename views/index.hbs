@@ -8,58 +8,47 @@
     <div onclick="show('其他')"><ion-icon name="logo-react"></ion-icon>其他</div>
   </div>
 </div>
+{{#if records.length}}
 <div class="amount-container">
   <div>
     <h4>總金額:</h4>  
   </div>
   <div>
-    <span id="total-amount">25260</span>
+    <span id="total-amount"></span>
   </div>
 </div>
-<ul class="list-group">  
+
+<ul class="list-group">
+  {{#each records}}
   <li class="list-group-item bg-light">
-      <div class="content-box d-flex ">
+      <div class="content-box d-flex px-4">
         <div class="row">
           <div class="col img-box">
-            <i class="fas fa-home"></i>
+            <i class="{{this.icon}}" style="color:rgb(115, 194, 221)"></i>
           </div>
-          <div class="col">
-            <h4>午餐</h4>
-            <span>2019/04/23</span>
+          <div class="col-auto">
+            <h4>{{this.name}}</h4>
+            <span>{{this.date}}</span>
           </div>
         </div>
         <div class="">
-          <h5>60</h5>
+          <h5>{{this.amount}}</h5>
         </div>
       </div>
-      <div class="function-box bg-light">
-        <a href="" class="btn">修改</a>
-        <a href="" class="btn">刪除</a>
+      <div class="function-box">
+        <a href="/records/{{this._id}}/edit" class="btn"><h6>修改</h6></a>
+        <a href="/records/{{this._id}}/delete" class="btn"><h6>刪除</h6></a>
       </div>
   </li>
-  <li class="list-group-item bg-light">
-    <div class="content-box d-flex ">
-      <div class="row">
-        <div class="col img-box">
-          <i class="fas fa-home"></i>
-        </div>
-        <div class="col">
-          <h4>午餐</h4>
-          <span>2019/04/23</span>
-        </div>
-      </div>
-      <div class="">
-        <h5>60</h5>
-      </div>
-    </div>
-    <div class="function-box bg-light">
-      <a href="" class="btn">修改</a>
-      <a href="" class="btn">刪除</a>
-    </div>
-  </li>
+  {{/each}}
 </ul>
+{{else}}
+  <div>
+    <h3 class="mt-5">請先新增一筆支出</h3>
+  </div>
+{{/if}}
 <div class="button-box">
-  <button class="btn btn-info">新增支出</button>
+  <a class="btn btn-dark" href="/records/new">新增支出</a>
 </div>
 
 
@@ -71,14 +60,8 @@
   let dropdown = document.querySelector('.dropdown')
   dropdown.onclick = () => dropdown.classList.toggle('active')
 </script>
-
 <script>
-  const CATEGORY = {
-      家居物業: "https://fontawesome.com/icons/home?style=solid",
-      交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
-      休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
-      餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
-      其他: "https://fontawesome.com/icons/pen?style=solid"
-    }
-  
+  function sum() {
+
+  }
 </script>

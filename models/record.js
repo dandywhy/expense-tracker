@@ -8,7 +8,7 @@ const recordSchema = new Schema({
   },
   date: {
     type: Date,
-    require: true
+    require: true,
   },
   amount: {
     type: Number,
@@ -25,7 +25,12 @@ const recordSchema = new Schema({
     ref: 'Category',
     index: true,
     require: true
+  },
+  icon: {
+    type: String,
+    require: true
   }
 })
+
 
 module.exports = mongoose.model('Record', recordSchema)

@@ -7,7 +7,7 @@ const db = require('../../config/mongoose')
 const CATEGORY = [
   {
     name: "家居物業",
-    icon: "fas fa- home"
+    icon: "fas fa-home"
   },
   {
     name: "交通出行",

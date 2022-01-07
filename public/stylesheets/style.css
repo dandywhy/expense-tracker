@@ -104,6 +104,9 @@ col {
   margin-top: 2em;
   justify-content: space-between;
 }
+.img-box {
+  width: 60px;
+}
 .content-box {
   width: 400px;
   padding: 1ch;
@@ -125,4 +128,8 @@ col {
 .input-group {
   width: 300px;
   margin: auto;
+}
+.card {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 470px;
 }
