@@ -8,9 +8,8 @@ router.get('/', (req, res) => {
   Record.find({ userId })
     .lean()
     .then(records => {records.map(record => {
-        record.date = dayjs(record.date).format('YYYY-MM-DD')
+        record.date = dayjs(record.date).format('YYYY/MM/DD')
       })
-      console.log(records)
       res.render('index', { records })
     })
     .catch(err => console.log(err))

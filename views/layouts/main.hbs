@@ -16,7 +16,9 @@
     <nav class="navbar navbar-dark bg-secondary justify-content-between">
       <div class="container-fluid">
         <a href="/" class="navbar-brand">家庭記帳本</a>
+        {{#if isAuthenticated}}
         <a href="/users/logout" class="btn btn-outline-light">登出</a>
+        {{/if}}
       </div>
     </nav>
   </header>
