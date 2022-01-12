@@ -1,11 +1,13 @@
 <div class="dropdown">
-  <input type="text" class="textBox" placeholder="類別" readonly>
-  <div class="option">
-    <div onclick="show('家居物業')"><ion-icon name="logo-html5"></ion-icon>家居物業</div>
-    <div onclick="show('交通出行')"><ion-icon name="logo-css3"></ion-icon>交通出行</div>
-    <div onclick="show('休閒娛樂')"><ion-icon name="logo-nodejs"></ion-icon></ion-icon>休閒娛樂</div>
-    <div onclick="show('餐飲食品')"><ion-icon name="logo-figma"></ion-icon>餐飲食品</div>
-    <div onclick="show('其他')"><ion-icon name="logo-react"></ion-icon>其他</div>
+  {{#if selectedCategory}}
+    <input type="text" class="textBox" placeholder="類別" value="{{selectedCategory.name}}" readonly>
+  {{else}}
+    <input type="text" class="textBox" placeholder="類別" readonly>
+  {{/if}}
+  <div class="option" id="sort" name="sort">
+    {{#each categories}}
+    <div onclick=show("{{this.name}}","{{this._id}}")><i class="{{this.icon}}" style="font-size: medium;"></i>{{this.name}}</div>
+    {{/each}}
   </div>
 </div>
 {{#if records.length}}
@@ -48,7 +50,7 @@
 </ul>
 {{else}}
   <div>
-    <h3 class="mt-5">請先新增一筆支出</h3>
+    <h3 class="mt-5">先新增一筆記錄吧</h3>
   </div>
 {{/if}}
 <div class="button-box">
@@ -57,15 +59,11 @@
 
 
 <script>
-  function show(anything) {
+  function show(anything, Id) {
     document.querySelector('.textBox').value = anything
+    window.location.href = `/search/${Id}`
   }
   
   let dropdown = document.querySelector('.dropdown')
   dropdown.onclick = () => dropdown.classList.toggle('active')
-</script>
-<script>
-  function sum() {
-
-  }
 </script>

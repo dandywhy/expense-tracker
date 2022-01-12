@@ -3,7 +3,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const dayjs = require('dayjs')
-const category = require('../../models/category')
+
 
 router.get('/new', (req, res) => res.render('new'))
 
