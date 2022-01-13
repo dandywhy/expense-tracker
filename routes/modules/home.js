@@ -9,19 +9,26 @@ router.get('/', async (req, res) => {
   const userId = req.user._id
   const categories = await Category.find().lean()
   const records = await Record.find({ userId }).lean()
-
-  records.forEach(record => record.date = dayjs(record.date).format('YYYY/MM/DD'))
-  res.render('index', { records, categories })
+  let totalAmount = 0
+  records.forEach(record => {
+    record.date = dayjs(record.date).format('YYYY/MM/DD')
+    totalAmount += record.amount
+  })
+  res.render('index', { records, categories, totalAmount })
 })
 
-router.get('/search/:sort', async (req, res) => {
+router.get('/category/:sort', async (req, res) => {
   const sortId = req.params.sort
   const userId = req.user._id
   const categories = await Category.find().lean()
   const selectedCategory = categories.filter(category => { return category._id.toString() === sortId })[0]
   const records = await Record.find({ userId, categoryId: sortId }).lean()
-  records.forEach(record => record.date = dayjs(record.date).format('YYYY/MM/DD'))
-  res.render('index', { records, categories, selectedCategory })
+  let totalAmount = 0
+  records.forEach(record => {
+    record.date = dayjs(record.date).format('YYYY/MM/DD')
+    totalAmount += record.amount
+  })
+  res.render('index', { records, categories, selectedCategory, totalAmount })
 })
 
 module.exports = router

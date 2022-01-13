@@ -16,7 +16,7 @@
     <h4>總金額:</h4>  
   </div>
   <div>
-    <span id="total-amount"></span>
+    <span id="total-amount">{{totalAmount}}</span>
   </div>
 </div>
 
@@ -61,7 +61,7 @@
 <script>
   function show(anything, Id) {
     document.querySelector('.textBox').value = anything
-    window.location.href = `/search/${Id}`
+    window.location.href = `/category/${Id}`
   }
   
   let dropdown = document.querySelector('.dropdown')
