@@ -1,16 +1,14 @@
 ﻿# expense-tracker
-
 記帳本
 =
 
 介紹
 -
-紀錄自身喜愛的餐廳，可以用於新增、瀏覽、刪除各餐廳的名稱、地址、電話、風格以及評分
+可以註冊自己的帳號，來紀錄一些個人的日常花費
 
 ### 功能
-+ 使用關鍵字來搜尋餐廳
-+ 內容有電話、網址，方便直接聯繫和前往餐廳
-+ 編輯/新增/刪除餐廳
++ 記帳本可使用的分類有家居物業、交通出行、休閒娛樂、餐飲食品、其他
++ 可以編輯/新增/刪除記帳
 
 環境建置
 -
@@ -44,11 +42,11 @@
  ```bash 
  npm install
  ```
-5. 執行 Node.js：
+5. 安裝 nodemon：
  ```bash 
- node app.js
+ npm install -g nodemon
  ```
-6. 先執行 seeds :
+6. 先執行 seeds，會出現兩次 MongoDB connected 和 categoryseed done/recordseeder done :
  ```bash
  npm run seed
  ```
@@ -59,6 +57,7 @@
 9. 當終端機出現以下文字，代表伺服器成功啟動：
  ```bash 
  App is running on http://localhost:3000
+ MongoDB connected!
  ```
 ![](https://github.com/dandywhy/expense-tracker/blob/main/public/img/%E7%99%BB%E5%85%A5.jpg)
 ![](https://github.com/dandywhy/expense-tracker/blob/main/public/img/%E4%B8%BB%E9%A0%81.jpg)
