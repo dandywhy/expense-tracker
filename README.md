@@ -59,6 +59,13 @@
  App is running on http://localhost:3000
  MongoDB connected!
  ```
+10. 測試用信箱密碼 :
+ ```bash
+ Email: user1@test.com
+ Password: 123
+ Email: user2@test.com 
+ Password: 123 
+ ```
 ![](https://github.com/dandywhy/expense-tracker/blob/main/public/img/%E7%99%BB%E5%85%A5.jpg)
 ![](https://github.com/dandywhy/expense-tracker/blob/main/public/img/%E4%B8%BB%E9%A0%81.jpg)
 ![](https://github.com/dandywhy/expense-tracker/blob/main/public/img/%E7%B7%A8%E8%BC%AF.jpg)
