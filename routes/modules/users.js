@@ -9,9 +9,11 @@ router.get('/login', (req, res) => res.render('login'))
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login',
-  failureFlash: true
+  failureFlash: '請輸入正確信箱和密碼!'
 }),
-  (req, res) => res.redirect('/')
+  (req, res) => {
+    res.redirect('/')
+  }
 )
 
 router.get('/register', (req, res) => res.render('register'))

@@ -58,30 +58,26 @@ const SEED_RECORD = [
   }
 ]
 
-db.once('open', () => {
-  Promise.all(SEED_USER.map(seed_user => {
-    const { name, email, password, list } = seed_user
-    return bcrypt
-      .genSalt(10)
-      .then(salt => { return bcrypt.hash(password, salt) })
-      .then(hash => { return User.create({ name, email, password: hash }) })
-      .then(user => {
-        const userId = user._id
-        return Promise.all(list.map(index => { 
-          const categoryName =  SEED_RECORD[index].category 
-          return Category.findOne({ name: categoryName })
-           .then(category => {
-             const { _id, icon } = category
-             Object.assign(SEED_RECORD[index], { userId, categoryId: _id, icon })
-             return Record.create(SEED_RECORD[index])
-           })
-        }))
-      })
-  }))
-  .then(() => {
-    console.log('recordseeder done!')
-    process.exit()
-  })
-  .catch(err => console.log(err))
+db.once('open', async () => {
+  try {
+    await Promise.all(SEED_USER.map(async seed_user => {
+      const { name, email, password, list } = seed_user
+      const salt = await bcrypt.genSalt(10)
+      const hash = await bcrypt.hash(password, salt)
+      const user = await User.create({ name, email, password: hash })
+      const userId = user._id
+      await Promise.all(list.map(async index => {
+        const categoryName = SEED_RECORD[index].category
+        const category = await Category.findOne({ name: categoryName })
+        const { _id, icon } = category
+        Object.assign(SEED_RECORD[index], { userId, categoryId: _id, icon })
+        await Record.create(SEED_RECORD[index])
+      }))
+    }))
+  } catch {
+    console.log(error)
+  }
+  console.log('recordseeder done!')
+  process.exit()
 })
 
