@@ -24,26 +24,23 @@ router.post('/new', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/:id/edit', (req, res) => {
-  const userId = req.user._id
-  const _id = req.params.id
-  Record.findOne({ _id, userId })
-    .lean()
-    .then(record => {
-      const { categoryId, date } = record
-      record.date = dayjs(date).format('YYYY-MM-DD')
-      Category.find()
-      .lean()
-      .then(categories => { 
-        categories.map(category => {
-          if (categoryId.toString() === category._id.toString()) {
-            category.selected = true
-            return res.render('edit', { record, categories })
-          }
-      })
-      })
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const _id = req.params.id
+    const record = await Record.findOne({ _id, userId }).lean()
+    const { categoryId, date } = record
+    record.date = dayjs(date).format('YYYY-MM-DD')
+    const categories = await Category.find().lean()
+    categories.map(category => {
+      if (categoryId.toString() === category._id.toString()) {
+        category.selected = true
+        res.render('edit', { record, categories })
+      }
     })
-    .catch(err => console.log(err))
+  } catch {
+    console.log(error)
+  }
 })
 
 router.put('/:id', (req, res) => {
